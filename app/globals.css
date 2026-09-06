@@ -13,12 +13,114 @@ body {
   height: 100%;
 }
 
+/* ── Navbar ─────────────────────────────────────────────── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0 2.5rem;
+  height: 68px;
+
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.navbar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Brand */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+}
+
+.navbar-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  object-fit: cover;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.25));
+  transition: filter 0.3s ease;
+}
+
+.navbar-brand:hover .navbar-logo {
+  filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.55));
+}
+
+.navbar-brand-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
+  background: linear-gradient(135deg, #fff 0%, #bbb 45%, #f0f0f0 60%, #999 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Nav links */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.navbar-link {
+  position: relative;
+  padding: 0.45rem 1.05rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.68);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: color 0.25s ease, background 0.25s ease;
+}
+
+.navbar-link::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 1.05rem;
+  right: 1.05rem;
+  height: 1.5px;
+  background: linear-gradient(90deg, #fff, #888);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.navbar-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.navbar-link:hover::after {
+  transform: scaleX(1);
+}
+
 /* ── Hero ──────────────────────────────────────────────── */
 .hero {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  padding-top: 68px;
   background-color: #000;
 }
 
