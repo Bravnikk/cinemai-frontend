@@ -15,9 +15,11 @@ export default function MovieRow({ title, movies }: MovieRowProps) {
         {title}
       </h2>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
+      <div className="flex overflow-x-auto gap-4 md:gap-6 no-scrollbar py-2 px-1">
         {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
+          <div key={movie.id} className="w-[160px] sm:w-[190px] md:w-[220px] shrink-0">
+            <MovieCard movie={movie} />
+          </div>
         ))}
       </div>
     </section>
