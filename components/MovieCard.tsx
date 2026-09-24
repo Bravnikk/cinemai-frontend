@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Movie } from "./MovieRow";
+import { Movie } from "@/data/movies";
 
 interface MovieCardProps {
   movie: Movie;

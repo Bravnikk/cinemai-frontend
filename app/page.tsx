@@ -1,14 +1,7 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
-import MovieRow, { Movie } from "../components/MovieRow";
-
-const ALL_MOVIES: Movie[] = [
-  { id: "1", title: "Echoes of the Valley",   image: "/movies/echoes-valley.jpg"  },
-  { id: "2", title: "The Last Artisan",        image: "/movies/last-artisan.jpg"   },
-  { id: "3", title: "Shadows in Kyoto",        image: "/movies/shadows-kyoto.jpg"  },
-  { id: "4", title: "Silent Orbit",            image: "/movies/silent-orbit.jpg"   },
-  { id: "5", title: "The Solitary Coast",      image: "/movies/solitary-coast.jpg" },
-];
+import MovieRow from "../components/MovieRow";
+import { movies as ALL_MOVIES, Movie } from "@/data/movies";
 
 /* Rotate the list so each row starts at a different movie */
 function rotated(offset: number): Movie[] {

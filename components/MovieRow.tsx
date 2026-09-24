@@ -1,10 +1,7 @@
 import MovieCard from "./MovieCard";
+import { Movie } from "@/data/movies";
 
-export interface Movie {
-  id: string;
-  title: string;
-  image: string;
-}
+export type { Movie };
 
 interface MovieRowProps {
   title: string;
