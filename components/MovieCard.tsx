@@ -7,17 +7,17 @@ interface MovieCardProps {
 
 export default function MovieCard({ movie }: MovieCardProps) {
   return (
-    <div className="flex flex-col gap-2.5 cursor-pointer transition-transform duration-300 hover:scale-105">
-      <div className="relative aspect-[2/3] w-full overflow-hidden rounded-xl bg-neutral-900 border border-white/10">
+    <div className="flex flex-col gap-2 sm:gap-2.5 cursor-pointer transition-transform duration-300 hover:scale-105">
+      <div className="relative aspect-[2/3] w-full overflow-hidden rounded-lg sm:rounded-xl bg-neutral-900 border border-white/10">
         <Image
           src={movie.image}
           alt={movie.title}
           fill
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
+          sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 20vw"
           className="object-cover"
         />
       </div>
-      <h3 className="text-sm font-semibold text-white/90 line-clamp-1">
+      <h3 className="text-xs sm:text-sm font-semibold text-white/90 line-clamp-1">
         {movie.title}
       </h3>
     </div>

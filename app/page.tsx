@@ -21,7 +21,7 @@ export default function Home() {
     <>
       <Navbar />
       <Hero />
-      <div className="pb-20">
+      <div className="pb-12 sm:pb-16 md:pb-20">
         {ROWS.map((row) => (
           <MovieRow key={row.title} title={row.title} movies={row.movies} />
         ))}
