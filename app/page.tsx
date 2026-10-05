@@ -1,6 +1,10 @@
+"use client";
+
+import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import MovieRow from "../components/MovieRow";
+import MovieDetailsModal from "../components/MovieDetailsModal";
 import { movies as ALL_MOVIES, Movie } from "@/data/movies";
 
 /* Rotate the list so each row starts at a different movie */
@@ -17,15 +21,28 @@ const ROWS = [
 ];
 
 export default function Home() {
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+
   return (
     <>
       <Navbar />
       <Hero />
       <div className="pb-12 sm:pb-16 md:pb-20">
         {ROWS.map((row) => (
-          <MovieRow key={row.title} title={row.title} movies={row.movies} />
+          <MovieRow
+            key={row.title}
+            title={row.title}
+            movies={row.movies}
+            onSelectMovie={setSelectedMovie}
+          />
         ))}
       </div>
+
+      {/* Movie Details Popup */}
+      <MovieDetailsModal
+        movie={selectedMovie}
+        onClose={() => setSelectedMovie(null)}
+      />
     </>
   );
 }

@@ -3,11 +3,15 @@ import { Movie } from "@/data/movies";
 
 interface MovieCardProps {
   movie: Movie;
+  onClick?: () => void;
 }
 
-export default function MovieCard({ movie }: MovieCardProps) {
+export default function MovieCard({ movie, onClick }: MovieCardProps) {
   return (
-    <div className="flex flex-col gap-2 sm:gap-2.5 cursor-pointer transition-transform duration-300 hover:scale-105">
+    <div
+      onClick={onClick}
+      className="flex flex-col gap-2 sm:gap-2.5 cursor-pointer transition-transform duration-300 hover:scale-105"
+    >
       <div className="relative aspect-[2/3] w-full overflow-hidden rounded-lg sm:rounded-xl bg-neutral-900 border border-white/10">
         <Image
           src={movie.image}
