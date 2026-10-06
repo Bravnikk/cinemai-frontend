@@ -5,6 +5,7 @@ export interface Movie {
   category: string;
   year: number;
   description: string;
+  youtubeId: string;
 }
 
 export const movies: Movie[] = [
@@ -15,6 +16,7 @@ export const movies: Movie[] = [
     category: "Featured",
     year: 2024,
     description: "A breathtaking cinematic journey through untouched wilderness, uncovering forgotten legends and timeless secrets buried deep within the misty mountains.",
+    youtubeId: "eOrNdBpGMv8",
   },
   {
     id: "2",
@@ -23,6 +25,7 @@ export const movies: Movie[] = [
     category: "Trending Now",
     year: 2023,
     description: "In a rapidly modernizing world, a master craftsman fights with quiet passion to preserve an ancient, delicate art form against all odds.",
+    youtubeId: "L_LUpnjgPso",
   },
   {
     id: "3",
@@ -31,6 +34,7 @@ export const movies: Movie[] = [
     category: "Top Rated",
     year: 2024,
     description: "A gripping neo-noir mystery exploring neon-drenched alleyways, hidden loyalties, and centuries-old secrets in the heart of historic Kyoto.",
+    youtubeId: "EngW7tLk6R8",
   },
   {
     id: "4",
@@ -39,6 +43,7 @@ export const movies: Movie[] = [
     category: "New Releases",
     year: 2025,
     description: "An astronaut stranded on a lonely orbital station discovers an enigmatic deep-space transmission that could reshape humanity's destiny.",
+    youtubeId: "R6MlUcmOul8",
   },
   {
     id: "5",
@@ -47,6 +52,7 @@ export const movies: Movie[] = [
     category: "Award Winners",
     year: 2023,
     description: "A poetic drama capturing solitude, redemption, and unspoken love along the rugged, windswept shores of the Atlantic coastline.",
+    youtubeId: "LXb3EKWsInQ",
   },
 ];
 
