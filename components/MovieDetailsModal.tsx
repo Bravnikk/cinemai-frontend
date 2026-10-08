@@ -35,31 +35,39 @@ export default function MovieDetailsModal({ movie, onClose }: MovieDetailsModalP
       {/* Modal Container */}
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative max-w-lg w-full bg-neutral-900 border border-white/15 rounded-2xl overflow-hidden shadow-2xl flex flex-col"
+        className="relative max-w-2xl w-full bg-neutral-900 border border-white/15 rounded-2xl overflow-hidden shadow-2xl flex flex-col"
       >
         {/* Close Button */}
         <button
           type="button"
           onClick={onClose}
           aria-label="Close details"
-          className="absolute top-3 right-3 z-10 p-2 rounded-full bg-black/70 hover:bg-black/90 text-white/80 hover:text-white border border-white/15 backdrop-blur-md transition-colors cursor-pointer"
+          className="absolute top-3 right-3 z-20 p-2 rounded-full bg-black/70 hover:bg-black/90 text-white/80 hover:text-white border border-white/15 backdrop-blur-md transition-colors cursor-pointer"
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
 
-        {/* Movie Poster Image */}
-        <div className="relative aspect-[16/10] w-full bg-neutral-950">
-          <Image
-            src={movie.image}
-            alt={movie.title}
-            fill
-            className="object-cover"
-            priority
-          />
-          {/* Subtle bottom fade */}
-          <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent" />
+        {/* Video Playback / Poster */}
+        <div className="relative aspect-video w-full bg-black">
+          {movie.youtubeId ? (
+            <iframe
+              src={`https://www.youtube.com/embed/${movie.youtubeId}`}
+              title={movie.title}
+              className="w-full h-full border-0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          ) : (
+            <Image
+              src={movie.image}
+              alt={movie.title}
+              fill
+              className="object-cover"
+              priority
+            />
+          )}
         </div>
 
         {/* Details Content */}
