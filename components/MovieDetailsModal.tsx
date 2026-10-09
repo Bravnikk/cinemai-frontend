@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Movie } from "@/data/movies";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface MovieDetailsModalProps {
   movie: Movie | null;
@@ -10,6 +10,13 @@ interface MovieDetailsModalProps {
 }
 
 export default function MovieDetailsModal({ movie, onClose }: MovieDetailsModalProps) {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  // Reset playing state when movie changes
+  useEffect(() => {
+    setIsPlaying(false);
+  }, [movie]);
+
   // Close on Escape key press
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -51,22 +58,41 @@ export default function MovieDetailsModal({ movie, onClose }: MovieDetailsModalP
 
         {/* Video Playback / Poster */}
         <div className="relative aspect-video w-full bg-black">
-          {movie.youtubeId ? (
+          {isPlaying && movie.youtubeId ? (
             <iframe
-              src={`https://www.youtube.com/embed/${movie.youtubeId}`}
+              src={`https://www.youtube.com/embed/${movie.youtubeId}?autoplay=1`}
               title={movie.title}
               className="w-full h-full border-0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
             />
           ) : (
-            <Image
-              src={movie.image}
-              alt={movie.title}
-              fill
-              className="object-cover"
-              priority
-            />
+            <div className="relative w-full h-full">
+              <Image
+                src={movie.image}
+                alt={movie.title}
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-black/30" />
+
+              {/* Play Button Overlay on Poster */}
+              {movie.youtubeId && (
+                <button
+                  type="button"
+                  onClick={() => setIsPlaying(true)}
+                  aria-label="Play video"
+                  className="group absolute inset-0 flex items-center justify-center cursor-pointer"
+                >
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/90 hover:bg-white text-black flex items-center justify-center shadow-2xl group-hover:scale-110 active:scale-95 transition-all duration-200">
+                    <svg className="w-7 h-7 sm:w-8 sm:h-8 fill-current translate-x-0.5" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </button>
+              )}
+            </div>
           )}
         </div>
 
@@ -92,12 +118,24 @@ export default function MovieDetailsModal({ movie, onClose }: MovieDetailsModalP
             {movie.description}
           </p>
 
-          {/* Close Action Button */}
-          <div className="pt-2 flex justify-end">
+          {/* Action Buttons */}
+          <div className="pt-2 flex items-center justify-between gap-3">
+            {movie.youtubeId && (
+              <button
+                type="button"
+                onClick={() => setIsPlaying(true)}
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold text-black bg-white hover:bg-neutral-200 active:scale-95 transition-all cursor-pointer shadow-lg"
+              >
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+                Play
+              </button>
+            )}
             <button
               type="button"
               onClick={onClose}
-              className="px-5 py-2 rounded-full text-sm font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/20 transition-colors cursor-pointer"
+              className="px-5 py-2.5 rounded-full text-sm font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/20 transition-colors cursor-pointer ml-auto"
             >
               Close
             </button>
